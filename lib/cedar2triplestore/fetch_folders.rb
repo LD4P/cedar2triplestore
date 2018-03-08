@@ -5,13 +5,17 @@ module Cedar2Triplestore
   class FetchFolders
 
     def initialize
-      @cedar ||= YAML.load(File.open('cedar.yml').read)
+      @cedar ||= YAML.safe_load(File.open('cedar.yml').read)
       @api_key = @cedar['apiKey']
       @post_url = @cedar['postUrl']
     end
 
     def contents
-      @api_key.nil? ? (return 'Please put your API key in the cedar.yml file!') : post(content_uris(json(folder_url)))
+      if @api_key.nil?
+        'Please put your API key in the cedar.yml file!'
+      else
+        post(content_uris(json(folder_url)))
+      end
     end
 
     private
@@ -35,7 +39,11 @@ module Cedar2Triplestore
     end
 
     def folder_url
-       "#{@cedar['resourceUrl']}#{URI.encode(@cedar['folderUrl'], /[:\/]/)}#{@cedar['folderUuid']}/contents?resource_types=instance,template,folder,element"
+      r = @cedar['resourceUrl']
+      f = URI.encode_www_form_component(@cedar['folderUrl'])
+      u = @cedar['folderUuid']
+      params = "resource_types=instance,template,folder,element"
+      "#{r}#{f}#{u}/contents?#{params}"
     end
   end
 end

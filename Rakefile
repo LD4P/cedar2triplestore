@@ -5,7 +5,7 @@ require 'json'
 task default: :ci
 
 desc 'run continuous integration suite (tests, coverage, docs)'
-task ci: %i(spec rubocop)
+task ci: %i[spec rubocop]
 
 begin
   require 'rspec/core/rake_task'

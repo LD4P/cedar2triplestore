@@ -1,7 +1,7 @@
 RSpec.describe Cedar2Triplestore::FetchFolders do
   describe 'initializing variables from yaml' do
-    let (:ff) { Cedar2Triplestore::FetchFolders.new }
-    let (:cedar) { ff.instance_variable_get(:@cedar) }
+    let(:ff) { Cedar2Triplestore::FetchFolders.new }
+    let(:cedar) { ff.instance_variable_get(:@cedar) }
 
     it 'reads the yaml file' do
       expect(ff).to be_present
@@ -17,13 +17,14 @@ RSpec.describe Cedar2Triplestore::FetchFolders do
     it 'creates a url for fetching cedar folders' do
       expect(ff.send(:folder_url)).to include(cedar['folderUuid'])
       expect(ff.send(:folder_url)).to include(cedar['resourceUrl'])
-      expect(ff.send(:folder_url)).to include(URI.encode(cedar['folderUrl'], /[:\/]/))
+      expect(ff.send(:folder_url))
+        .to include(URI.encode_www_form_component(cedar['folderUrl']))
     end
   end
 
   describe 'gets the content uris' do
-    let (:ff) { Cedar2Triplestore::FetchFolders.new }
-    let (:json) { File.read('spec/fixtures/CEDAR GEODATA 01.json') }
+    let(:ff) { Cedar2Triplestore::FetchFolders.new }
+    let(:json) { File.read('spec/fixtures/CEDAR GEODATA 01.json') }
 
     before do
       allow(ff).to receive(:content_uris).and_return(json)
@@ -34,7 +35,7 @@ RSpec.describe Cedar2Triplestore::FetchFolders do
     end
 
     it 'returns a message if there is no api key' do
-      expect(ff.contents).to eq ('Please put your API key in the cedar.yml file!')
+      expect(ff.contents).to eq 'Please put your API key in the cedar.yml file!'
     end
   end
 end
