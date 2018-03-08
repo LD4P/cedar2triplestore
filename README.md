@@ -1,4 +1,4 @@
-# cedar2bibframe
+# cedar2triplestore
 App to fetch folder contents from CEDAR and post them to a triplestore
 
 1) Configure the application using `cedar.yml`. Visit https://cedar.metadatacenter.org/profile for your API key.
