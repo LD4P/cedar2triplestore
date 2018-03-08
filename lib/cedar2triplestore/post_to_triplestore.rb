@@ -6,7 +6,7 @@ module Cedar2Triplestore
     attr_reader :path
 
     def post(json, url)
-      response || begin
+      response ||= begin
         response = conn(url).post do |req|
           req.headers['Content-Type'] = 'application/ld+json'
           req.body = json

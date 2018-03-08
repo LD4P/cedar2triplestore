@@ -5,4 +5,4 @@ folderUrl: https://repo.metadatacenter.org/folders/
 # GIS data deposit folder UUID:
 folderUuid: a950ebde-aabc-43bf-80d2-fec5b73e7785
 # Triplestore post url:
-postUrl: "http://sul-ld4p-blazegraph-dev.stanford.edu/blazegraph/namespace/cedar/sparql"
+postUrl: "http://xxsul-ld4p-blazegraph-dev.stanford.edu/blazegraph/namespace/cedar/sparql"

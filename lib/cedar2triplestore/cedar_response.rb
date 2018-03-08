@@ -7,7 +7,7 @@ module Cedar2Triplestore
     attr_reader :api_key
 
     def response(url, key)
-      response || begin
+      response ||= begin
         conn = Faraday.new(url: url)
 
         response = conn.get do |req|

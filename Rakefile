@@ -33,5 +33,6 @@ require_relative 'lib/cedar2triplestore'
 desc 'Cedar API task to get the rdf content from the sub-folders'
 task :folder_contents do
   ff = Cedar2Triplestore::FetchFolders.new
+  puts ff.contents
   ff.contents
 end

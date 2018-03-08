@@ -22,6 +22,7 @@ module Cedar2Triplestore
 
     def post(content_uris)
       content_uris.uniq.each do |u|
+        puts json(u)
         PostToTriplestore.new.post(json(u).to_json, @post_url)
       end
     end
