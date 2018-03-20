@@ -2,7 +2,8 @@
 apiKey:
 resourceUrl: https://resource.metadatacenter.org/folders/
 folderUrl: https://repo.metadatacenter.org/folders/
+# Enter the folder id that contains the RDF that you want to download
 # GIS data deposit folder UUID:
 folderUuid: a950ebde-aabc-43bf-80d2-fec5b73e7785
 # Triplestore post url:
-postUrl: "http://xxsul-ld4p-blazegraph-dev.stanford.edu/blazegraph/namespace/cedar/sparql"
+postUrl: "http://zzzsul-ld4p-blazegraph-dev.stanford.edu/blazegraph/namespace/cedar/sparql"
